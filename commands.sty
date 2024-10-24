@@ -1,0 +1,273 @@
+\ProvidesPackage{commands}
+
+\newcommand{\para}{\begin{PARA}\rm}
+\newcommand{\arap}{\end{PARA}\rm}
+\newcommand{\dfn}{\begin{definition}\rm}
+\newcommand{\nfd}{\end{definition}\rm}
+\newcommand{\rmk}{\begin{remark}\rm}
+\newcommand{\kmr}{\end{remark}\rm}
+\newcommand{\xmpl}{\begin{example}\rm}
+\newcommand{\lpmx}{\end{example}\rm}
+%
+\newcommand{\jdef}[1]{{\bf #1}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\Iso}{\mathrm{Iso}}
+\newcommand{\Times}[2]{{}_{#1}\!\!\times_{#2}}
+\newcommand{\liftbox}{\par\vspace{-2em}}
+%
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cBbar}{\overline{\mathcal{B}}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cMbar}{\overline{\mathcal{M}}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand\co{
+  \mathchoice
+    {{\scriptstyle\mathcal{O}}}% \displaystyle
+    {{\scriptstyle\mathcal{O}}}% \textstyle
+    {{\scriptscriptstyle\mathcal{O}}}% \scriptstyle
+    {\scalebox{.7}{$\scriptscriptstyle\mathcal{O}$}}%\scriptscriptstyle
+  }
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cUbar}{\overline{\mathcal{U}}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+%
+\newcommand{\oeps}{{\overline{\epsilon}}}
+\newcommand{\og}{{\overline{\gamma}}}
+\newcommand{\ug}{{\underline{\gamma}}}
+\newcommand{\oev}{\overline{\mathrm{ev}}}
+\newcommand{\uev}{\underline{\mathrm{ev}}}
+\newcommand{\oS}{{\overline{S}}}
+\newcommand{\uS}{{\underline{S}}}
+\newcommand{\oU}{\overline{U}}
+\newcommand{\uU}{\underline{U}}
+\newcommand{\oV}{\overline{V}}
+\newcommand{\uV}{\underline{V}}
+\newcommand{\opsi}{\overline{\Psi}}
+\newcommand{\upsi}{\underline{\Psi}}
+\newcommand{\uzeta}{\underline{\zeta}}
+\newcommand{\otheta}{\overline{\theta}}
+\newcommand{\utheta}{\underline{\theta}}
+%\DeclareMathOperator{\hatotimes}{{\hat{\otimes}}}
+\newcommand{\hatotimes}{\, {\wh\otimes}}
+%
+\newcommand{\Rectangle}[8]{
+\begin{array}{ccc}
+{#1} & \mapright{#2} & {#3}\\
+\mapdown{#4} && \mapdown{#5} \\
+{#6} & \mapright{#7} & {#8}
+\end{array}
+}
+\newcommand{\mapdown}[1]{\Big\downarrow
+\rlap{$\vcenter{\hbox{$\scriptstyle#1$}}$}}
+\newcommand{\mapright}[1]{\smash{
+\mathop{\longrightarrow}\limits^{#1}}}
+%
+\newcommand{\medskipnoindent}{\par\medskip\par\noindent}
+%
+%
+\newcommand{\one}
+{{{\mathchoice \mathrm{ 1\mskip-4mu l} \mathrm{ 1\mskip-4mu l}
+\mathrm{ 1\mskip-4.5mu l} \mathrm{ 1\mskip-5mu l}}}}
+%
+\newcommand{\dslash}{/\mskip-6mu/}
+%
+%
+\newcommand{\A}{{\mathbb{A}}}
+\newcommand{\B}{{\mathbb{B}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\D}{{\mathbb{D}}}
+\newcommand{\F}{{\mathbb{F}}}
+\renewcommand{\H}{{\mathbb{H}}}
+\newcommand{\LL}{{\mathbb{L}}}
+\newcommand{\M}{{\mathbb{M}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\R}{{\mathbb{R}}}
+\renewcommand{\SS}{{\mathbb{S}}}
+\newcommand{\T}{{\mathbb{T}}}
+%\renewcommand{\u}{{\mathbf{u}}}
+%\renewcommand{\v}{{\mathbf{v}}}
+\newcommand{\W}{{\mathbb{W}}}
+\newcommand{\x}{{\mathbf{x}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+%
+%\newcommand{\coker}{\mathrm{ coker }}  % cokernel
+\DeclareMathOperator{\coker}{coker}
+%\newcommand{\colim}{\mathrm{ colim}\, }  % colimit
+\DeclareMathOperator*{\colim}{colim}
+\newcommand{\Cr}{\mathrm{ Cr}\, }  % Critical value
+\newcommand{\im}{\mathrm{im}\,}        % image
+\newcommand{\range}{\mathrm{ range }}  % range
+\newcommand{\SPAN}{\mathrm{ span }}    % span
+\newcommand{\Det}{{\mathrm{Det}}}      % Det
+\newcommand{\dom}{\mathrm{ dom }}      % domain
+\newcommand{\DIV}{\mathrm{ div }}      % divergence
+\newcommand{\trace}{\mathrm{ trace }}  % trace
+\newcommand{\tr}{\mathrm{ tr }}        % trace
+\newcommand{\sign}{\mathrm{ sign }}    % sign
+\newcommand{\Gr}{\mathrm{ Gr}\, }  % Graded object
+\newcommand{\id}{\mathrm{ id}}         % identity
+\newcommand{\Id}{\mathrm{ Id}}
+\newcommand{\rank}{\mathrm{ rank }}    % rank
+\newcommand{\codim}{\mathrm{ codim}}   % codimension
+\newcommand{\diag}{\mathrm{ diag}}     % diagonal matrix
+\newcommand{\cl}{\mathrm{ cl}}         % closure
+\newcommand{\dist}{\mathrm{ dist}}     % distance
+\newcommand{\INT}{\mathrm{ int}}       % interior
+\newcommand{\supp}{\mathrm{ supp}}     % support
+\newcommand{\INDEX}{\mathrm{ index}}   % (Fredholm)index
+\newcommand{\ind}{\mathrm{ind}}
+\newcommand{\grad}{\mathrm{ grad }}    % gradient
+\renewcommand{\Re}{\mathrm{ Re\,}}       % real part
+\renewcommand{\Im}{\mathrm{ Im\,}}       % imaginary part
+\newcommand{\Met}{{\mathfrak{Met}}}       % space of metrics
+\newcommand{\Jreg}{\cJ_{\mathrm{reg}}}   %regular J's
+\newcommand{\Jphireg}{\cJ_{\phi,\mathrm{reg}}}
+\newcommand{\Freg}{\cF_{\mathrm{reg}}}
+\newcommand{\pr}{{\mathrm{pr}}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\Ev}{\mathrm{Ev}}
+\newcommand{\Aut}{\mathrm{ Aut}}          % Automorphisms
+\newcommand{\Diff}{\mathrm{ Diff}}        % Diffeomorphisms
+\newcommand{\Vect}{\mathrm{ Vect}}        % Vector fields
+\newcommand{\Hol}{\mathrm{ Hol}}          % Holomorphic
+\newcommand{\End}{\mathrm{ End}}          % Endomorphisms
+\newcommand{\G}{\mathrm{G}}
+\newcommand{\Lie}{\mathrm{Lie}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\Op}{{O}{p}}
+\newcommand{\Int}{\mathrm{Int}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Fix}{\mathrm{Fix}}
+\newcommand{\fin}{\mathrm{fin}}
+\newcommand{\Top}{\mathrm{Top}}
+%
+%\renewcommand{\phi}{{\varphi}}
+\newcommand{\eps}{{\varepsilon}}
+\newcommand{\om}{{\omega}}
+\newcommand{\Om}{{\Omega}}
+\newcommand{\TOm}{{\widetilde{\Omega}}}
+\newcommand{\tc}{{\widetilde{c}}}
+\newcommand{\tJ}{{\widetilde{J}}}
+\newcommand{\tcO}{{\widetilde{\cO}}}
+%\newcommand{\ttcO}{{\widetilde{\!\widetilde{\cO}}}}
+\newcommand{\ttcO}{{\stackrel{\raisebox{-1mm}{$\approx$}}{\raisebox{.01mm}{$\cO$}}}}
+\newcommand{\ttcOs}{{\stackrel{\raisebox{-1mm}{$\approx$}}{\raisebox{.01mm}{$\cO$}}{}\hspace{-1mm}^s}}
+\newcommand{\ttcOu}{{\stackrel{\raisebox{-1mm}{$\approx$}}{\raisebox{.01mm}{$\cO$}}{}\hspace{-1mm}^u}}
+\newcommand{\tS}{{\widetilde{S}}}
+\newcommand{\tcS}{{\widetilde{\cS}}}
+\newcommand{\tcSg}{{\widetilde{\cS}_{\textrm{good}}}}
+\newcommand{\tcSb}{{\widetilde{\cS}_{\textrm{bad}}}}
+\newcommand{\tw}{{\widetilde{w}}}
+\newcommand{\tx}{{\widetilde{x}}}
+\newcommand{\ty}{{\widetilde{y}}}
+%
+\newcommand{\Cinf}{C^{\infty}}
+\newcommand{\reg}{\mathrm{ reg}}
+\newcommand{\CZ}{\mathrm{CZ}}
+%
+\newcommand{\inner}[2]{\left\langle #1, #2\right\rangle}
+\newcommand{\winner}[2]{\left\langle #1{\wedge}#2\right\rangle}
+%
+\def\NABLA#1{{\mathop{\nabla\kern-.5ex\lower1ex\hbox{$#1$}}}}
+\def\Nabla#1{\nabla\kern-.5ex{}_{#1}}
+\def\Tabla#1{\Tilde\nabla\kern-.5ex{}_{#1}}
+%
+\def\abs#1{\mathopen|#1\mathclose|}
+\def\Abs#1{\left|#1\right|}
+\def\norm#1{\mathopen\|#1\mathclose\|}
+\def\Norm#1{\left\|#1\right\|}
+\def\dslash{/\mskip-6mu/}
+%
+\renewcommand{\Tilde}{\widetilde}
+\renewcommand{\Hat}{\widehat}
+\newcommand{\half}{\mbox{$\frac12$}}
+\newcommand{\p}{{\partial}}
+\newcommand{\dbar}{{\bar\partial}}
+\newcommand{\TopVect}{\mathrm{TopVect}}
+
+
+\newenvironment{enum}
+{\begin{enumerate}\renewcommand{\labelenumi}{(\roman{enumi})}}
+{\renewcommand{\labelenumi}{(\arabic{enumi}.}\end{enumerate}}
+
+% Kai's definitions %%%
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\wh}{\widehat}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\Ad}{{\rm Ad}}
+%\newcommand{\Diff}{{\rm Diff}}
+\newcommand{\ContS}{{\rm ContS}}
+\newcommand{\ContF}{{\rm ContF}}
+\newcommand{\Crit}{{\rm Crit}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\fk}{\frak{k}}
+\newcommand{\TQFT}{\rm TQFT}
+\newcommand{\wc}{\widecheck}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\pb}{\overline{\partial}}
+\newcommand{\bk}{\mathbf{k}}
+%
+
+\newcommand{\umu}{{\underline{\mu}}}
+\newcommand{\um}{{\underline{m}}}
+\newcommand{\utau}{{\underline{\tau}}}
+\newcommand{\usigma}{{\underline{\sigma}}}
+\newcommand{\ubeta}{{\underline{\beta}}}
+\newcommand{\uc}{{\underline{c}}}
+\renewcommand{\uzeta}{{\underline{\zeta}}}
+
+%circled symbols
+%
+%Example: Hello, \mymk{1,2,3,4,5} world \circled{1}
+%
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\newcommand{\mymk}[1]{%
+  \tikz[baseline=(char.base)]\node[anchor=south west, draw,rectangle, rounded corners, inner sep=2pt, minimum size=7mm,
+    text height=2mm](char){\ensuremath{#1}} ;}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand{\boldbeta}{{\boldsymbol{\beta}}}
+\newcommand{\boldlambda}{{\boldsymbol{\lambda}}}
+\newcommand{\boldmu}{{\boldsymbol{\mu}}}
+\newcommand{\boldeta}{{\boldsymbol{\eta}}}
+\newcommand{\boldeps}{{\boldsymbol{\eps}}}
+\newcommand{\boldc}{{\boldsymbol{c}}}
+\newcommand{\boldp}{{\boldsymbol{p}}}
+\newcommand{\boldB}{{\boldsymbol{B}}}
+\newcommand{\boldS}{{\boldsymbol{S}}}
+\newcommand{\boldzeta}{{\boldsymbol{\zeta}}}
+%
+\newcommand{\Spec}{{\rm Spec}}
+\newcommand{\Cont}{{\rm Cont}}
+\newcommand{\Map}{{\rm Map}}
+\newcommand{\disc}{{\rm discr}}
