@@ -1,0 +1,720 @@
+%
+% COLOR CODE
+% Kai: Red
+%
+\documentclass[12pt,a4paper]{amsart}
+\usepackage{amsthm,amsfonts,amsmath,amssymb,latexsym}
+\usepackage{epsfig,graphics,color}
+%\usepackage{graphicx}
+%\usepackage{epsfig}
+%\usepackage{graphicx,color}
+\usepackage[all]{xy}
+\usepackage[breaklinks=true]{hyperref}
+%\usepackage{showkeys}
+\usepackage{mathrsfs}
+%\usepackage{makeidx}
+%\usepackage{cancel}
+\usepackage{stmaryrd}
+\usepackage{verbatim}
+\usepackage{bm}
+\usepackage{mathabx}
+%\usepackage[showframe=true]{geometry}
+\usepackage{enumitem}
+\usepackage{pgf,amsmath,tikz,type1cm,fix-cm}
+\usetikzlibrary{positioning}
+\usepackage{hyperref}
+
+\newlength{\XHeight}
+\newlength{\XWidth}
+%
+\setlength{\parskip}{5pt} 
+\setlist[itemize,1]{leftmargin=\dimexpr 26pt-.1in}
+
+%%%%%%%%%%%%%%%%  header %%%%%%%%%%%%%%%%%
+
+
+
+%
+%%%%%%%%%%%%%%%% Environments/macros %%%%%%%%%%
+%
+%default is \theoremstyle{theorem}. 
+%But there are also other styles !!
+\newtheorem{PARA}{}[section]
+\newtheorem{theorem}[PARA]{Theorem}
+\newtheorem{thm}[PARA]{Theorem}
+\newtheorem{corollary}[PARA]{Corollary}
+\newtheorem{cor}[PARA]{Corollary}
+\newtheorem{lemma}[PARA]{Lemma}
+\newtheorem{proposition}[PARA]{Proposition}
+\newtheorem{prop}[PARA]{Proposition}
+\newtheorem{definition}[PARA]{Definition}
+\newtheorem{defi}[PARA]{Definition}
+\newtheorem{definition-proposition}[PARA]{Definition-Proposition}
+\newtheorem{definition-lemma}[PARA]{Definition-Lemma}
+\newtheorem{conjecture}[PARA]{Conjecture}
+\newtheorem{question}[PARA]{Question}
+\theoremstyle{definition}
+\newtheorem{remark}[PARA]{Remark}
+\newtheorem{rem}[PARA]{Remark}
+\theoremstyle{theorem}
+\newtheorem{example}[PARA]{Example}
+%
+\newcommand{\para}{\begin{PARA}\rm}
+\newcommand{\arap}{\end{PARA}\rm}
+\newcommand{\dfn}{\begin{definition}\rm}
+\newcommand{\nfd}{\end{definition}\rm}
+\newcommand{\rmk}{\begin{remark}\rm}
+\newcommand{\kmr}{\end{remark}\rm}
+\newcommand{\xmpl}{\begin{example}\rm}
+\newcommand{\lpmx}{\end{example}\rm}
+%
+\newcommand{\jdef}[1]{{\bf #1}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\Iso}{\mathrm{Iso}}
+\newcommand{\Times}[2]{{}_{#1}\!\!\times_{#2}}
+\newcommand{\liftbox}{\par\vspace{-2em}}
+%
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cBbar}{\overline{\mathcal{B}}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cMbar}{\overline{\mathcal{M}}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand\co{
+  \mathchoice
+    {{\scriptstyle\mathcal{O}}}% \displaystyle
+    {{\scriptstyle\mathcal{O}}}% \textstyle
+    {{\scriptscriptstyle\mathcal{O}}}% \scriptstyle
+    {\scalebox{.7}{$\scriptscriptstyle\mathcal{O}$}}%\scriptscriptstyle
+  }
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cUbar}{\overline{\mathcal{U}}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+%
+\newcommand{\oeps}{{\overline{\epsilon}}}
+\newcommand{\og}{{\overline{\gamma}}}
+\newcommand{\ug}{{\underline{\gamma}}}
+\newcommand{\oev}{\overline{\mathrm{ev}}}
+\newcommand{\uev}{\underline{\mathrm{ev}}}
+\newcommand{\oS}{{\overline{S}}}
+\newcommand{\uS}{{\underline{S}}}
+\newcommand{\oU}{\overline{U}}
+\newcommand{\uU}{\underline{U}}
+\newcommand{\oV}{\overline{V}}
+\newcommand{\uV}{\underline{V}}
+\newcommand{\opsi}{\overline{\Psi}}
+\newcommand{\upsi}{\underline{\Psi}}
+\newcommand{\ozeta}{\overline{\zeta}}
+\newcommand{\uzeta}{\underline{\zeta}}
+\newcommand{\otheta}{\overline{\theta}}
+\newcommand{\utheta}{\underline{\theta}}
+%\DeclareMathOperator{\hatotimes}{{\hat{\otimes}}}
+\newcommand{\hatotimes}{\, {\wh\otimes}}
+%
+\newcommand{\Rectangle}[8]{
+\begin{array}{ccc}
+{#1} & \mapright{#2} & {#3}\\
+\mapdown{#4} && \mapdown{#5} \\
+{#6} & \mapright{#7} & {#8}
+\end{array}
+}
+\newcommand{\mapdown}[1]{\Big\downarrow
+\rlap{$\vcenter{\hbox{$\scriptstyle#1$}}$}}
+\newcommand{\mapright}[1]{\smash{
+\mathop{\longrightarrow}\limits^{#1}}}
+%
+\newcommand{\medskipnoindent}{\par\medskip\par\noindent}
+%
+%
+\newcommand{\one}
+{{{\mathchoice \mathrm{ 1\mskip-4mu l} \mathrm{ 1\mskip-4mu l}
+\mathrm{ 1\mskip-4.5mu l} \mathrm{ 1\mskip-5mu l}}}}
+%
+\newcommand{\dslash}{/\mskip-6mu/}
+%
+%
+\newcommand{\A}{{\mathbb{A}}}
+\newcommand{\B}{{\mathbb{B}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\D}{{\mathbb{D}}}
+\newcommand{\F}{{\mathbb{F}}}
+\renewcommand{\H}{{\mathbb{H}}}
+\newcommand{\LL}{{\mathbb{L}}}
+\newcommand{\M}{{\mathbb{M}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\R}{{\mathbb{R}}}
+\renewcommand{\SS}{{\mathbb{S}}}
+\newcommand{\T}{{\mathbb{T}}} 
+%\renewcommand{\u}{{\mathbf{u}}}
+%\renewcommand{\v}{{\mathbf{v}}}
+\newcommand{\W}{{\mathbb{W}}}
+\newcommand{\x}{{\mathbf{x}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+%
+%\newcommand{\coker}{\mathrm{ coker }}  % cokernel
+\DeclareMathOperator{\coker}{coker}
+%\newcommand{\colim}{\mathrm{ colim}\, }  % colimit
+\DeclareMathOperator*{\colim}{colim}
+\newcommand{\Cr}{\mathrm{ Cr}\, }  % Critical value
+\newcommand{\im}{\mathrm{im}\,}        % image
+\newcommand{\range}{\mathrm{ range }}  % range
+\newcommand{\SPAN}{\mathrm{ span }}    % span
+\newcommand{\Det}{{\mathrm{Det}}}      % Det
+\newcommand{\dom}{\mathrm{ dom }}      % domain
+\newcommand{\DIV}{\mathrm{ div }}      % divergence
+\newcommand{\trace}{\mathrm{ trace }}  % trace
+\newcommand{\tr}{\mathrm{ tr }}        % trace
+\newcommand{\sign}{\mathrm{ sign }}    % sign
+\newcommand{\Gr}{\mathrm{ Gr}\, }  % Graded object
+\newcommand{\id}{\mathrm{ id}}         % identity
+\newcommand{\Id}{\mathrm{ Id}}
+\newcommand{\rank}{\mathrm{ rank }}    % rank
+\newcommand{\codim}{\mathrm{ codim}}   % codimension
+\newcommand{\diag}{\mathrm{ diag}}     % diagonal matrix
+\newcommand{\cl}{\mathrm{ cl}}         % closure
+\newcommand{\dist}{\mathrm{ dist}}     % distance
+\newcommand{\INT}{\mathrm{ int}}       % interior
+\newcommand{\supp}{\mathrm{ supp}}     % support
+\newcommand{\INDEX}{\mathrm{ index}}   % (Fredholm)index
+\newcommand{\ind}{\mathrm{ind}}
+\newcommand{\grad}{\mathrm{ grad }}    % gradient
+\renewcommand{\Re}{\mathrm{ Re\,}}       % real part
+\renewcommand{\Im}{\mathrm{ Im\,}}       % imaginary part
+\newcommand{\Met}{{\mathfrak{Met}}}       % space of metrics
+\newcommand{\Jreg}{\cJ_{\mathrm{reg}}}   %regular J's
+\newcommand{\Jphireg}{\cJ_{\phi,\mathrm{reg}}}
+\newcommand{\Freg}{\cF_{\mathrm{reg}}}
+\newcommand{\pr}{{\mathrm{pr}}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\Ev}{\mathrm{Ev}}
+\newcommand{\Aut}{\mathrm{ Aut}}          % Automorphisms
+\newcommand{\Diff}{\mathrm{ Diff}}        % Diffeomorphisms
+\newcommand{\Vect}{\mathrm{ Vect}}        % Vector fields
+\newcommand{\Hol}{\mathrm{ Hol}}          % Holomorphic
+\newcommand{\End}{\mathrm{ End}}          % Endomorphisms
+\newcommand{\G}{\mathrm{G}}
+\newcommand{\Lie}{\mathrm{Lie}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\Op}{{O}{p}}
+\newcommand{\Int}{\mathrm{Int}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Fix}{\mathrm{Fix}}
+\newcommand{\fin}{\mathrm{fin}}
+\newcommand{\Top}{\mathrm{Top}}
+%
+%\renewcommand{\phi}{{\varphi}}
+\newcommand{\eps}{{\varepsilon}}
+\newcommand{\om}{{\omega}}
+\newcommand{\Om}{{\Omega}}
+\newcommand{\TOm}{{\widetilde{\Omega}}} 
+\newcommand{\tc}{{\widetilde{c}}}
+\newcommand{\tJ}{{\widetilde{J}}}
+\newcommand{\tcO}{{\widetilde{\cO}}}
+%\newcommand{\ttcO}{{\widetilde{\!\widetilde{\cO}}}}
+\newcommand{\ttcO}{{\stackrel{\raisebox{-1mm}{$\approx$}}{\raisebox{.01mm}{$\cO$}}}}
+\newcommand{\ttcOs}{{\stackrel{\raisebox{-1mm}{$\approx$}}{\raisebox{.01mm}{$\cO$}}{}\hspace{-1mm}^s}}
+\newcommand{\ttcOu}{{\stackrel{\raisebox{-1mm}{$\approx$}}{\raisebox{.01mm}{$\cO$}}{}\hspace{-1mm}^u}}
+\newcommand{\tS}{{\widetilde{S}}}
+\newcommand{\tcS}{{\widetilde{\cS}}}
+\newcommand{\tcSg}{{\widetilde{\cS}_{\textrm{good}}}}
+\newcommand{\tcSb}{{\widetilde{\cS}_{\textrm{bad}}}}
+\newcommand{\tw}{{\widetilde{w}}}
+\newcommand{\tx}{{\widetilde{x}}} 
+\newcommand{\ty}{{\widetilde{y}}}
+%
+\newcommand{\Cinf}{C^{\infty}}
+\newcommand{\reg}{\mathrm{ reg}}
+\newcommand{\CZ}{\mathrm{CZ}}
+%
+\newcommand{\inner}[2]{\left\langle #1, #2\right\rangle}
+\newcommand{\winner}[2]{\left\langle #1{\wedge}#2\right\rangle}
+%
+\def\NABLA#1{{\mathop{\nabla\kern-.5ex\lower1ex\hbox{$#1$}}}}
+\def\Nabla#1{\nabla\kern-.5ex{}_{#1}}
+\def\Tabla#1{\Tilde\nabla\kern-.5ex{}_{#1}}
+%
+\def\abs#1{\mathopen|#1\mathclose|}
+\def\Abs#1{\left|#1\right|}
+\def\norm#1{\mathopen\|#1\mathclose\|}
+\def\Norm#1{\left\|#1\right\|}
+\def\dslash{/\mskip-6mu/}
+%
+\renewcommand{\Tilde}{\widetilde}
+\renewcommand{\Hat}{\widehat}
+\newcommand{\half}{\mbox{$\frac12$}}
+\newcommand{\p}{{\partial}}
+\newcommand{\dbar}{{\bar\partial}}
+\newcommand{\TopVect}{\mathrm{TopVect}}
+
+
+\newenvironment{enum}
+{\begin{enumerate}\renewcommand{\labelenumi}{(\roman{enumi})}}
+{\renewcommand{\labelenumi}{(\arabic{enumi}.}\end{enumerate}}
+
+% Kai's definitions %%%
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\wh}{\widehat}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\Ad}{{\rm Ad}}
+%\newcommand{\Diff}{{\rm Diff}}
+\newcommand{\ContS}{{\rm ContS}}
+\newcommand{\ContF}{{\rm ContF}}
+\newcommand{\Crit}{{\rm Crit}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\fk}{\frak{k}}
+\newcommand{\TQFT}{\rm TQFT}
+\newcommand{\wc}{\widecheck}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\pb}{\overline{\partial}}
+\newcommand{\bk}{\mathbf{k}}
+%
+
+\newcommand{\umu}{{\underline{\mu}}}
+\newcommand{\um}{{\underline{m}}}
+\newcommand{\utau}{{\underline{\tau}}}
+\newcommand{\usigma}{{\underline{\sigma}}}
+\newcommand{\ubeta}{{\underline{\beta}}}
+\newcommand{\uc}{{\underline{c}}}
+\renewcommand{\uzeta}{{\underline{\zeta}}}
+
+%
+
+%\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+\definecolor{darkgreen}{rgb}{0.12, 0.3, 0.17}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{chromeyellow}{rgb}{1.0, 0.65, 0.0}
+\definecolor{darkorange}{rgb}{1.0, 0.55, 0.0}
+\definecolor{flame}{rgb}{0.89, 0.35, 0.13}
+\definecolor{lightgray}{rgb}{0.75, 0.75, 0.75}
+%
+\parskip=4pt
+\parindent=0pt
+
+%circled symbols
+%
+%Example: Hello, \mymk{1,2,3,4,5} world \circled{1}
+%
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\newcommand{\mymk}[1]{%
+  \tikz[baseline=(char.base)]\node[anchor=south west, draw,rectangle, rounded corners, inner sep=2pt, minimum size=7mm,
+    text height=2mm](char){\ensuremath{#1}} ;}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand{\boldbeta}{{\boldsymbol{\beta}}}
+\newcommand{\boldlambda}{{\boldsymbol{\lambda}}}
+\newcommand{\boldmu}{{\boldsymbol{\mu}}}
+\newcommand{\boldeta}{{\boldsymbol{\eta}}}
+\newcommand{\boldeps}{{\boldsymbol{\eps}}}
+\newcommand{\boldc}{{\boldsymbol{c}}}
+\newcommand{\boldp}{{\boldsymbol{p}}}
+\newcommand{\boldB}{{\boldsymbol{B}}}
+\newcommand{\boldS}{{\boldsymbol{S}}}
+\newcommand{\boldzeta}{{\boldsymbol{\zeta}}}
+%
+\newcommand{\Spec}{{\rm Spec}}
+\newcommand{\Cont}{{\rm Cont}}
+\newcommand{\Map}{{\rm Map}}
+\newcommand{\disc}{{\rm discr}}
+
+
+\setcounter{tocdepth}{1}
+
+% Kai's color is Red
+\newcommand{\kai}{\color{red}}
+%\usepackage[dvipsnames]{xcolor}
+
+\begin{document}
+
+\title{Notes on Condensed Mathematics} 
+\author{Kai Cieliebak, Milan Zerbin, ...}
+%\address{Universit\"at Augsburg \newline Universit\"atsstrasse 14, D-86159 Augsburg, Germany}
+%\email{kai.cieliebak@math.uni-augsburg.de}
+\date{\today}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{abstract} 
+%\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}\label{sec:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Light condensed sets}\label{sec:light-condensed-sets}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The ordinary text in this section is a transcript of Scholze's Lecture
+2 in~\cite{Clausen-Scholze-IHES}, whose video is available under\\
+https://www.youtube.com/playlist?list=PLx5f8IelFRgGmu6gmL-Kf$\_$Rl$\_$6Mm7juZO
+
+Text in colours such as {\kai this one} contains details and
+explanations from our side. 
+
+Other relevant references are the lecture
+notes~\cite{Scholze-condensed,Scholze-analytic,Clausen-Scholze-complex}. 
+
+%%%
+\subsection{Light profinite sets}
+%%%
+
+Consider the following three categories.
+
+1) {\em Profinite sets} {\bf ProFin} \\
+Objects: $\lim_{i\in I}S_i$ for $S_i$ finite sets, $I$ cofiltered poset
+($\forall i,j \exists k\leq i,j$)
+\\
+Morphisms: 
+$$
+  \Hom(\lim_{i\in I}S_i,\lim_{j\in J}T_j) := \lim_j\colim_i\Map(S_i,T_j)
+$$
+
+2) {\em Totally disconnected compact Hausdorff spaces} {\bf DiscComp}
+
+3) {\em Boolean algebras} {\bf Boolean} \\ 
+Objects: commutative rings $A$ such that $x^2=x$ for all $x$ 
+
+\begin{prop}[Stone Duality]
+There are equivalences of categories
+$$
+  \textbf{ProFin} \stackrel{\sim}\longrightarrow 
+  \textbf{DiscComp} \stackrel{\sim}\longrightarrow  
+  \textbf{Boolean}^{\rm op}.
+$$
+\end{prop}
+
+\begin{proof}
+For 1) $\to$ 2) $\to$ 3), equip $S=\lim S_i$ with the (inverse,
+projective) limit topology and assign to it the Boolean algebra
+$$
+   \Cont(S,\F_2) = \colim_i\Map(S_i,\F_2).
+$$
+Conversely, assign to $A$ the profinite set
+$$
+  \Spec A = \Hom(A,\F_2) = \lim_{A_i\subset A\text{ finite}}\Hom(A_i,\F_2).
+$$
+\end{proof}
+
+There are two measures how ``big'' a profinite set is.
+
+\begin{defi}
+Let $S$ be a profinite set. 
+\begin{itemize}
+\item The {\em size} of $S$ is $\kappa=|S|$.
+\item The {\em weight} of $S$ is $\lambda=|\Cont(S,\F_2)|$.
+\item $S$ is {\em light} if $\lambda\leq\om=|\N|$.
+\end{itemize}
+\end{defi}
+
+\begin{rem}
+If $\lambda$ is infinite, then $\lambda$ is the smallest
+  cardinality of an index set $I$ such that $S=\lim_{i\in I}S_i$.
+Thus, $S$ is light iff is is a countable limit of finite sets.
+\end{rem}
+
+\begin{example}[Examples of profinite sets]
+(0) Finite sets.
+  
+(1) $S = \N\cup\{\infty\} = \lim_n\{0,1,\dots,n,\infty\}$ has $\kappa=\lambda=\om$. 
+
+(2) The {\em Cantor set} $S = \{0,1\}^\N = \lim_n\{0,1\}^n$ has
+  $\kappa=2^\om$ and $\lambda=\om$.
+
+(3) The {\em Stone-\v{C}ech compactification} $S=\beta\N$ satisfies 
+$$
+  \Cont(\beta\N,\F_2) = \Cont(\N,\F_2) \cong \{\text{subset of }\N\},
+$$
+so it has $\kappa=2^{2^\om}$ and $\lambda=2^\om$. 
+\end{example}
+
+\begin{prop}
+(a) We always have $\lambda\leq 2^\kappa$ and $\kappa\leq 2^\lambda$. \\
+(b) If $\kappa=\om$ then $\lambda=\om$. 
+\end{prop}
+
+\begin{proof}
+(a) follows from
+\begin{align*}
+  \lambda &= |\Cont(S,\F_2)| \leq |\Map(S,\F_2)| = 2^\kappa, \cr
+  \kappa &= |\Hom(A,\F_2)| \leq |\Map(A,\F_2)| = 2^\lambda.
+\end{align*}
+(b) Write $S=\{s_0,s_1,s_2,\dots\}$ and choose quotients
+$S\twoheadrightarrow S_n$ which restrict to injections
+$\{s_0,\dots,s_n\}\into S_n$. Then the induced map $S\to\lim_n S_n$ is
+injective and surjective.
+%and thus $\Cont(S,\F_2)=\colim_n\Cont(S_n,\F_2)$ is countable.   
+\end{proof}
+
+\begin{rem}
+The same proof shows: if $\kappa$ is infinite then $\lambda\leq\kappa$.
+\end{rem}
+
+\begin{prop}
+The following categories are equivalent to the category of light
+profinite sets:
+
+1) $\text{\bf Pro}_{\N}\text{\bf Fin}$ \\
+Objects: $\lim_{n\in\N}S_n$ for $S_n$ finite sets
+\\
+Morphisms: 
+\begin{align*}
+  \Hom(\lim_{n\in\N}S_n,\lim_{m\in\N}T_m)
+  &:= \lim_m\colim_n\Map(S_n,T_m) \cr
+  &= \colim_f\lim_m\Map(S_{f(m)},T_m)
+\end{align*}
+over strictly increasing maps $f:\N\to\N$.
+  
+2) {\em Metrizable} totally disconnected compact Hausdorff spaces
+
+3) $(\text{{\em Countable} Boolean algebras})^{\rm op}$
+\end{prop}
+
+\begin{prop}
+The category of light profinite sets has all countable
+limits. Sequential limits of surjections are surjective. 
+\end{prop}
+
+\begin{prop}
+For each light profinite set $S$ there exists a surjection
+$\{0,1\}^\N\to S$. 
+\end{prop}
+
+\begin{proof}
+Exercise (simple induction).
+\end{proof}
+
+The following two propositions are special to {\em light} profinite
+sets. 
+
+\begin{prop}
+Let $S$ be a {\em light} profinite set. Then every open subset $U\subset S$
+is a countable union of light profinite sets. 
+\end{prop}
+
+\begin{proof}
+Write $S=\lim_{n\in\N}S_n$ with $S_n$ finite and the canonical maps
+$\pi_n:S\to S_n$. Denote $Z:=S\setminus U$ and $Z_n:=\pi_n(Z)\subset S_n$.
+Then $U=\bigcup_n\pi_n^{-1}(S_n\setminus Z_n)$, and thus $Z=\lim_nZ_n$. 
+Each $\pi_n^{-1}(S_n\setminus Z_n)\subset S$ is {\em clopen} (closed
+and open), and
+$$
+  U = \coprod_n\Bigl(\pi_{n+1}^{-1}(S_{n+1}\setminus Z_{n+1})\setminus
+  \pi_n^{-1}(S_n\setminus Z_n)\Bigr).
+$$
+\end{proof}
+
+\begin{rem}
+There exist open subsets $U\subset S$ of profinite sets $S$ with
+sheaf cohomology $H^i(U;\Z)\neq 0$ for some $i>0$, so $U$ is not 
+a countable union of profinite sets.
+\end{rem}
+
+\begin{prop}
+Let $S$ be a nonempty {\em light} profinite set. Then $S$ is an
+injective object in {\bf ProFin}, i.e., for each injection $Z\subset
+X$ of profinite sets each morphism $Z\to S$ extends to $X$: 
+$$
+\xymatrix{
+  X \ar@{-->}[rd] \\ 
+  Z \ar@{^{(}->}[u] \ar[r] & S
+}
+$$
+\end{prop}
+
+\begin{proof}
+In the special case $S=\F_2$ the restriction map
+$\Cont(X,\F_2)\to\Cont(Z,\F_2)$ is surjective because each clopen
+subset of $Z$ extends to a clopen subset of $X$. 
+In the general case, write $S=\lim_n S_n$. We may assume that each map
+$S_{n+1}\to S_n$ is surjective. By induction over $n$, suppose we
+already have extended the map $Z\to S_n$ to $X\to S_n$. By
+decomposition into fibers over $S_n$, it suffices to consider the case
+$S_n=\{*\}$. Then $S_{n+1}$ is finite and the extension follows
+from the special case. 
+\end{proof}
+
+%%%
+\subsection{Light condensed sets}
+%%%
+
+\begin{defi}
+A {\em light condensed set} is a sheaf on the category of light
+profinite sets with the Grothendieck topology generated by
+\begin{enumerate}
+\item finite disjoint unions;
+\item {\em all} surjective maps.
+\end{enumerate}
+Equivalently, this is a functor 
+$$
+  X: \text{Pro}_\N\text{Fin}^{\rm op} \to \text{Sets},\qquad S\mapsto X(S)
+$$
+satisfying
+\begin{enumerate}
+\setcounter{enumi}{-1}
+\item $X(\varnothing)=*$;
+\item $X(S_1\amalg S_2)\stackrel{\sim}\longrightarrow X(S_1)\times X(S_2)$;
+\item Each surjection $f:T\twoheadrightarrow S$ induces an isomorphism
+$$
+  f^*:X(S) \stackrel{\cong}\longrightarrow {\rm eq}\Bigl(X(T)
+  \overset{p_1^*}{\underset{p_2^*}{\rightrightarrows}} X(T\times_ST)\Bigr).
+$$
+\end{enumerate}
+\end{defi}
+
+\begin{example}[Key example]
+Each topological space $A$ defines a light condensed set 
+$$
+  \ul{A}: S\mapsto\Cont(S,A).
+$$
+Here condition (2) is equivalent to the fact that surjections between
+compact Hausdorff spaces are quotient maps. We have
+\begin{itemize}
+\item $\ul{A}(*) = A$ as a set; 
+\item $\ul{A}(\N\cup\{\infty\}) = \{\text{convergent sequences in $A$
+  (with chosen limit point)}\}$;
+\item $\ul{A}(\text{Cantor set})$ carries an action of
+  $\End(\text{Cantor set})$. 
+\end{itemize}
+\end{example}
+
+For any light condensed set $X$, we view $X(\N\cup\{\infty\})$ as the
+``convergent sequences in $X$''. 
+
+\begin{remark}[Useless remark]
+A light condensed set $X$ is completely determined by $X(\text{Cantor
+  set})$ with its action of $\End(\text{Cantor set})$.
+\end{remark}
+
+\begin{prop}
+The functor
+$$
+  \text{Top} \to \text{CondSet}^{\rm light},\qquad A\mapsto\ul{A}
+$$
+has a left adjoint $X\mapsto X(*)_{\rm top}$. Here $X(*)_{\rm top}$ is
+the set $X(*)$ equipped with the quotient topology from
+$\coprod_{\alpha\in X(\text{Cantor set})}\text{Cantor set} \to X(*)$.
+\end{prop}
+
+\begin{remark}
+$X(*)_{\rm top}$ is a {\em metrizably compactly generated topological
+  space}. For any such space $A$ we have an isomorphism
+  $\ul{A}(*)_{\rm top}\stackrel{\sim}\to A$. 
+\end{remark}
+
+\begin{cor}
+The functor
+$$
+  \{\text{metrizably compactly generated topological space}s\} \into
+  \text{CondSet}^{\rm light}
+$$
+is full and faithful. 
+\end{cor}
+
+\begin{rem}[Historical precursors]
+1) Johnstone's ``topological topos'', based on just $\N\cup\{\infty\}$
+and the canonical topology. This is not finitary and shares the bad
+algebraic properties of topoi. 
+
+2) Escordo and Xu considered light profinite sets with only finite
+disjoint unions as covers. 
+\end{rem}
+
+%%%
+\subsection{Light condensed abelian groups}
+%%%
+
+Recall that for sheaves on any site, sheaves of abelian groups form a
+{\em Grothendieck abelian category}: all limits and colimits exist,
+and filtered colimits are exact. 
+Thus, $\text{CondAb}^{\rm light}$ is a Grothendieck abelian category. 
+
+\begin{example}
+What are the cokernels of the inclusions
+$$
+  \Q_\disc\into\R \quad\text{and}\quad \R_\disc\to \R?
+$$
+In the first case we have $\ul{\R}/\ul{\Q_\disc}(*)=\R/\Q$ and 
+$$
+  (\ul{\R}/\ul{\Q_\disc})(S) = \Cont(S,\R)/\Cont(S,\Q_\disc),
+$$
+where $\Cont(S,\Q_\disc)$ consists of locally constant maps.
+In the second case we have $\ul{\R}/\ul{\R_\disc}(*)=\R/\R=0$ and 
+$$
+  (\ul{\R}/\ul{\R_\disc})(S) = \Cont(S,\R)/\Cont(S,\R_\disc),
+$$
+where $\Cont(S,\R_\disc)$ again consists of locally constant maps.
+The abelian group $(\ul{\R}/\ul{\R_\disc})(S)$ is e.g.~nontrivial for
+$S$ the Cantor set.
+\end{example}
+
+\begin{thm}
+$\text{CondAb}^{\rm light}$ is a Grothendieck abelian category with
+  tensor products and the following properties:
+\begin{enumerate}
+\item Countable products are exact and satisfy Grothendieck's axiom
+  (A86).
+\item The free light condensed abelian group $\Z[\N\cup\{\infty\}]$ is
+  {\em internally projective}. 
+\end{enumerate}
+\end{thm}
+
+Here the functor 
+$$
+  \text{CondAb}^{\rm light} \to \text{CondSet}^{\rm light}
+$$
+has a left adjoint $X\mapsto \Z[X]$. 
+  
+\bibliographystyle{abbrv}
+\bibliography{000_condensed}
+
+\end{document} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% JUNK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
