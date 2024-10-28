@@ -2,6 +2,7 @@
 
 \LoadClass[12pt,a4paper]{amsart}
 
+\RequirePackage[style=alphabetic, backend=biber, sorting=ynt]{biblatex}
 \RequirePackage{amsthm,amsfonts,amsmath,amssymb,latexsym}
 \RequirePackage{epsfig,graphics,color}
 \RequirePackage[all]{xy}
