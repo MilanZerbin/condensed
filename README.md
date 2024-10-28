@@ -10,11 +10,11 @@ Condensed Mathematics: Learners Diary
 ## build 
 
 We use bibtex with biber backed. Thus to build all references correctly use the path
-'''
+```
 pdflatex --shell-escape condensed.tex
 biber condensed
 pdflatex --shell-escape condensed.tex
 pdflatex --shell-escape condensed.tex
-'''
+```
 
 
