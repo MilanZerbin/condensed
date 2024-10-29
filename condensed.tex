@@ -34,6 +34,43 @@
 \section{Introduction}\label{sec:intro}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\subsubsection{Examples}
+
+
+{\filip
+\begin{example} $\lim_n \Z/p^n \Z = \Z_p.$ 
+
+In order to talk about the (inverse) limit, we need to specify the maps $$p_{ij}: \Z/p^j \Z \to \Z p^i \Z.$$ They are given by $p_{ij}([q]_{p^j}) = [q]_{p^{i}}$ for $i \leq j$. The result of the limit is the set $\Z_p$ of $p$-adic integers. $\Z_p$  is the completion of $\Z$ with respect to the $p$-adic norm $\|n\|_p = \frac{1}{p^k}$, where $n=p^k q $ and $\mathrm{gcd}(p,q)=1$. 
+
+Given a sequence $a_n \in \{0, 1, ..., p\}$, let us show that $S_k= \sum_{i=0}^k a_i p^i$ is a Cauchy sequence in $\| \cdot \|_p$. Indeed, assume $m<n$ 
+$$
+\|S_n- S_m\|_p = \|\sum_{i=m+1}^n a_i p^i\|_p \leq \frac{1}{p^{m+1}}.
+$$
+So the limit of $S_n$ exists in $\Z_p$, and we can write $\sum_{n=0}^{+\infty} a_n p^n \in \Z_p$. One can actually see that 
+$$
+\Z_p= \left\{\sum_{n=0}^{+\infty} a_n p^n \mid a_n \in \{0, ..., p-1\}\right \}.
+$$
+Now, recall that in the category of topological spaces, the limit $\lim_{i \in I} X_i = X_{\infty}$ is given by
+$$
+X_{\infty} = \left\{ (x_i)_{i \in I} \in \prod_{i \in I} X_i \mid  p_{ij}(x_j) = x_i \right\}.
+$$
+Now, each element $q \in \Z / p^j\Z$ has the unique representative of the form $q= \sum_{k=0}^{j-1} a_k p^k$, and 
+$$
+p_{ij}\left(\sum_{k=0}^{j-1} a_k p^k\right) = \sum_{k=0}^{i-1}a_k p^k.
+$$
+Hence, for $q = (q_n)_{n \in \N} \in \lim_n \Z /p^n \Z$, and since $p_{ij}(q_j)= q_i$ we have
+$$
+q_n = \sum_{k=0}^{n-1} a_k p^k.
+$$
+Note that the coefficients $a_k$ do not depend on $n$. So, we have an obvious bijection between $\Z_p$ and $\lim_n \Z/p^n \Z$ given by
+$$
+\Z_p \ni \sum_{n=0}^{\infty} a_k p^k \mapsto \left(\sum_{k=0}^{n-1} a_k p^k \right)_n \in \lim_n \Z/p^n \Z.
+$$
+Now, we need to check that the topologies agree. The topology on the direct limit is the relative topology (as a subset) of the product topology. Since we equip $\Z/ p^k \Z$ with the discrete topology, the basis for the topology on $\lim_n \Z/p^n \Z$ is given by prescribing finitely many values. On the other hand, open balls in $\Z_p$ are precisely the sets where the first $k$ entries are equal to the entries of the center of the ball, and all other entries are arbitrary.
+\end{example}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Light condensed sets}\label{sec:light-condensed-sets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
