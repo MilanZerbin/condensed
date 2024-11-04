@@ -54,6 +54,102 @@ notes~\cite{analytic,condensed,complex}.
 %%%
 \subsection{Light profinite sets}
 %%%
+\textcolor{black}{}
+{\lukas
+We first discuss classical Stone duality between totally disconnected compact Hausdorff spaces and boolean algebras.
+
+\begin{definition}
+  A \emph{Stone space} is a totally disconnected compact Hausdorff space.
+  We denote the category of Stone spaces and continuous maps by \(\Stone\).
+\end{definition}
+
+\begin{definition}
+  A \emph{boolean algebra} is a commutative ring \(A\) (with unit \(1\)) such that every element \(a\in A\) is \emph{idempotent}, that is, \(a^2=a\).
+  We denote the category of Boolean algebras and ring homomorphisms by \(\Bool\).
+\end{definition}
+
+\begin{example}
+  The two element set \(\{0,1\}\) becomes a Stone space by equipping it with the discrete topology.
+  Moreover, it carries the structure of a boolean algebra by identifying it with \(\F_2\), the finite field with two elements.
+  (In fact, \(\F_2\) is a \emph{boolean algebra object} in the category of Stone spaces.)
+\end{example}
+
+\begin{example}
+  For every Stone space \(X\), the set \(\Cont(X,\F_2)\) of continuous maps from \(X\) to \(\F_2\) becomes a boolean algebra with respect to pointwise addition and multiplication.
+  Note that \(\Cont(X,\F_2)\) is in bijection to the set of clopen subsets of \(X\).
+  (This is an isomorphism of boolean lattices?)
+\end{example}
+
+\begin{lemma}
+  \leavevmode
+  \begin{enumerate}
+    \item
+      Arbitrary products of Stone spaces are Stone spaces.
+    \item
+      Closed subspaces of Stone spaces are Stone spaces.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  By Tychonoff, arbitrary products of compact spaces are compact.
+  The same holds for Hausdorff spaces and totally disconnected spaces (?).
+  \dots
+\end{proof}
+
+\begin{example}
+  Let \(A\) be a boolean algebra.
+  The set \(\Hom(A,\F_2)\) of ring homomorphisms from \(A\) to \(\F_2\) is a closed subset of \(\prod_{a\in A}\F_2\) equipped with the product topology.
+  Endowing it with the induced subspace topology, it becomes a Stone space which is called the \emph{spectrum} of \(A\) and denoted by \(\Spec(A)\).
+
+  Missing: Show that this is homeomorphic to the Zariski spectrum!
+  Under this homeomorphism, the standard open subsets \(D(a)\), where \(a\in A\), correspond to open sets of the form
+  \[\{\phi\in\Spec(A) \mid \phi(a)=1\},\]
+  which are henceforth denoted by \(D(a)\) as well.
+  In fact, \(D(a)\) is also a closed set, since \(\Spec A\setminus D(a)=D(1-a)\).
+  Consequently, the spectrum of a boolean algebra possesses a basis of clopen subsets, which gives another proof that it is totally disconnected.
+\end{example}
+
+\begin{thm}[Stone Duality I]
+  Assigning to a Stone space \(X\) the boolean algebra \(\Cont(X,\F_2)\), and to a boolean algebra \(A\) its spectrum \(\Spec(A)\), constitutes an equivalence of categories
+  \[
+    \Stone \simeq \Bool^{\rm op}.
+  \]
+\end{thm}
+\begin{proof}
+  First of all, the assignments \(X\to\Cont(X,\F_2)\) and \(A\mapsto\Spec(A)=\Hom(A,\F_2)\) are obviously (contravariantly) functorial (by precomposition).
+  We are then to show that they are mutually (pseudo)inverse to each other, that is, we have to find natural isomorphisms \(X\cong\Spec(\Cont(X,\F_2))\) and \(A\cong\Cont(\Spec A,\F_2)\).
+  Both of these are defined as evaluation maps.
+
+  More precisely, let us first consider the map
+  \[e:X \longrightarrow \Spec(\Cont(X,\F_2)), \quad x \longmapsto (e_x:f \mapsto f(x)).\]
+  Obviously \(e_x\) is a morphism of boolean algebras.
+  To show that \(e\) is continuous, let \(f\in \Cont(X,\F_2)\) and \(D(f)\) the associated standard clopen set in \(\Spec(A)\).
+  Its preimage under \(e\) is the set of all \(x\in X\) such that \(f(x)=e_x(f)=1\).
+  This condition is equivalent to \(f(x)\neq 0\) which is an open condition, so \(e\) is continuous.
+  Missing: Bijectivity, naturality.
+
+  Next, consider the evaluation map
+  \[e:A \longrightarrow  \Cont(\Spec A,\F_2),\quad a\mapsto (e_a : \phi\mapsto \phi(a))\]
+  which is obviously a ring homomorphism.
+  To prove injectivity, suppose that \(a\neq 0\).
+  By Zorn's lemma, there is a maximal ideal \(I\) of \(A\) which contains \(1-a\neq 1\).
+  Since quotient of boolean rings are boolean, and quotients of rings by maximal ideals are fields, the quotient ring \(A/I\) is (uniquely) isomorphic to \(\F_2\).
+  By composing this isomorphism with the canonical projection \(A\to A/I\) we obtain a morphism of boolean algebras \(\phi:A\to \F_2\) with kernel \(I\).
+  In particular, \(\phi(1-a)=0\), or equivalently, \(\phi(a)=1\), so \(e_a\neq 0\) which proves injectivity.
+
+  For surjectivity, let \(f:\Spec A \to \F_2\) be any continuous function.
+  Such a function is uniquely determined by the clopen set \(U=f^{-1}(1)\subseteq\Spec(A)\).
+  If we can find an \(a\in A\) with \(U=D(a)\), then \(f\) is exactly \(e_a\).
+  Since \(U\) is open, it can be written as a union of standard open sets.
+  But since \(U\) is closed and thus compact, finitely many of these suffice, say, \(U=D(a_1)\cup\dots\cup D(a_n)\).
+  Recall from above that in a boolean algebra, \(\Spec(A)\setminus D(a)=D(1-a)\).
+  Moreover, the standard opens satisfy the property \(D(a)\cap D(b)=D(ab)\) (this holds in the spectrum of every ring).
+  Therefore, if we define \(a\) as \(1-(1-a_1)\cdots (1-a_n)\), we obtain
+  \[
+    D(a) = \Spec(A)\setminus (D(1-a_1)\cap\dots\cap D(1-a_n)) = D(a_1)\cup\dots\cup D(a_n) = U.
+  \]
+  [The proof of surjectivity corresponds to Exercise 23 (iii) in Atiyah-MacDonald.]
+\end{proof}
+}
 
 Consider the following three categories.
 
