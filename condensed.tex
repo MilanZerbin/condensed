@@ -55,6 +55,37 @@ notes~\cite{analytic,condensed,complex}.
 \subsection{Light profinite sets}
 %%%
 \textcolor{black}{}
+{\milan 
+There are two different notions of highly disconnected spaces.
+\begin{definition}
+    A topological space $X$ is called \emph{totally disconnected}, if any subset of $X$ containing more than one element is disconnected.
+    It is called \emph{totally separated}, if any two points $x,y\in X$ can be separated by a clopen (closed and open) $U\subset X$ with $x\in U$ and $y\not\in U$.
+\end{definition}
+Any totally separated space is totally disconnected:
+Let $A\subset X$ be a subset containing two distinct elements $x,y \in A$. Take $U$ a separating clopen set with $x\in U$, $y\not\in U$. 
+The complement $U^c = X\setminus U$ of $U$ is clopen aswell.
+Then $A = (A\cap U) \cup (A\cap U^c)$ is a decomposition of $A$ into two nonempty open sets, hence $A$ is disconnected.
+The converse however is generally not true
+\begin{example}
+    Consider the space $X = \N\cup \{\infty, \infty^\prime\}$ with discrete topology on $\N$ and open sets around $\infty$ or $\infty^\prime$ containing all except finitely many natural numbers.
+    The map $n\mapsto \frac{1}{n}$ identifies this space with the subspace $\{1/n \:\vert\: n\in\N\}\cup\{0,0^\prime\}$ of the \emph{line with two origins} $\R_0^+\times\{1\} \amalg \R_0^+\times\{-1\} / \sim$ where $(x,1)\sim (x,-1)$ whenever $x>0$.
+
+    $X$ is not hausdorff, as the sequence $(n)$ converges both to $\infty$ and $\infty^\prime$.
+    The clopen set $\{\infty,\infty^\prime \}\cup \{m \:\vert\: m> n\}$ separates $\infty$ or $\infty^\prime$ from $n$, so all sets containing both an element from $\N$ and one from $\{\infty,\infty^\prime\}$ are disconnected.
+    Furthermore the subset $\{\infty,\infty^\prime\}$ inherits the discrete topology, as there are open sets around $\infty$ not intersecting $\{\infty^\prime\}$ in $X$.
+    Thus also the subspace $\{\infty^\prime,\infty\}$ is disconnected, hence $X$ is totally disconnected.
+
+    $X$ is however not totally separated: Any open set around $\infty$ contains infinitely many $n\in \N$, its closure then contains $\infty^\prime$ aswell. 
+    Hence $\infty$ and $\infty^\prime$ may not be separated by a clopen set.
+\end{example}
+\begin{lemma}
+    A compact hausdorff space is totally disconnected if and only if it is totally separated
+\end{lemma}
+\begin{proof}
+By above, totally separated always implies totally disconnected. 
+For the other direction, take any 
+\end{proof}
+}
 {\lukas
 We first discuss classical Stone duality between totally disconnected compact Hausdorff spaces and boolean algebras.
 
