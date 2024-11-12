@@ -42,103 +42,105 @@
 
 \subsection{Examples}
 
-\subsubsection*{One-point compactification of $\mathbb N$}
+{\adrian
+  \subsubsection*{One-point compactification of $\mathbb N$}
 
 The usual way of defining the one-point compactification of $\mathbb N$ (as a discrete space) to $\mathbb N^* = \mathbb N \cup \{\infty\}$ is by having the previously open sets of $\mathbb N$ (all of them) be open in $\mathbb N^*$, and additionally all those sets containing $\infty$, whose complement is closed and compact inside $\mathbb N$ (equivalently, finite).
 
 To understand $\mathbb N^*$ as a pro-finite set with the corresponding topology (inverse limit-topology), we consider the projective system of finite sets
-\[
-  X_n \colonequals \{ k \in \mathbb N \mid k \leq n\} \cup \{ \infty \} = \{0, 1, \dots, n, \infty\}
-\]
-with maps $p^{n}_m \colon X_{n} \longrightarrow X_{m}$ for $n \geq m$ given by
-\[
-  k \longmapsto
-  \left[
-  \begin{array}{lll}
-    k
-    &   ,
-    &   k \leq m
-    \\  \infty
-    &   ,
-    &   \textup{$k > m$, esp. if $k = \infty$}
-  \end{array}
-  \right.
-\]
-These maps commute, in the sense that $p^m_l \circ p^n_m = p^n_l$, which is a necessity for defining the (projective/inverse) limit of this system
-\begin{equation} \label{def:compactified_IN}
-\mathbb N^* \colonequals \varprojlim_{n} X_n.
-\end{equation}
-We take this limit in the category of topological spaces, where the sets $X_n$ are discrete spaces.
+  \[
+    X_n \colonequals \{ k \in \mathbb N \mid k \leq n\} \cup \{ \infty \} = \{0, 1, \dots, n, \infty\}
+  \]
+  with maps $p^{n}_m \colon X_{n} \longrightarrow X_{m}$ for $n \geq m$ given by
+  \[
+    k \longmapsto
+    \left[
+    \begin{array}{lll}
+      k
+      & ,
+      & k \leq m
+      \\  \infty
+      & ,
+      & \textup{$k > m$, esp. if $k = \infty$}
+    \end{array}
+    \right.
+  \]
+  These maps commute, in the sense that $p^m_l \circ p^n_m = p^n_l$, which is a necessity for defining the (projective/inverse) limit of this system
+  \begin{equation}
+    \label{def:compactified_IN}
+    \mathbb N^* \colonequals \varprojlim_{n} X_n.
+  \end{equation}
+  We take this limit in the category of topological spaces, where the sets $X_n$ are discrete spaces.
 
 
 \paragraph{The underlying set of $\mathbb N^*$:}
 Let's first check that this gives the correct set $\mathbb N \cup \{\infty\}$, by constructing a bijection.
 An element of $\mathbb N^*$ can be understood as an element of the product $x = (x_n) \in \prod_n X_n$ that fulfills the compatibility conditions
-\[
-  p^n_m(x_n) = x_m
-\]
-for all $m \leq n$.
+  \[
+    p^n_m(x_n) = x_m
+  \]
+  for all $m \leq n$.
 Since $(X_n)$ is a linear system, it suffices to check this for the maps $p^{n+1}_n$, because all the others are compositions of those maps between \grqq adjacent\grqq{} sets:
-\[
-  p^n_m = p^{m+1}_m \circ p^{m+2}_{m+1} \circ \cdots \circ p^n_{n-1}.
-\]
-Let's say that we have $x_n = k \neq \infty$ for some $n$.
+  \[
+    p^n_m = p^{m+1}_m \circ p^{m+2}_{m+1} \circ \cdots \circ p^n_{n-1}.
+  \]
+  Let's say that we have $x_n = k \neq \infty$ for some $n$.
 Then on the one hand we can conclude for all smaller indices $m \leq n$ that
-\[
-  x_m = p^n_m(x_n) = p^n_m(k) =
-  \left[
-  \begin{array}{lll}
-    k
-    &   ,
-    &   k \leq m
-    \\  \infty
-    &   ,
-    &   \textup{$k > m$, esp. if  $k = \infty$}
-  \end{array}
-  \right.,
-\]
-For all bigger indices $m \geq n$ we have $x_m = k$, since $k \neq \infty$ and therefore its only preimage under $p^m_n$ is $k \in X_m$, thus
-\[
-  x = (\infty, \dots, \infty, k, k, k, \dots),
-\]
-where $x_k$ is the first finite entry.
+  \[
+    x_m = p^n_m(x_n) = p^n_m(k) =
+    \left[
+    \begin{array}{lll}
+      k
+      & ,
+      & k \leq m
+      \\  \infty
+      & ,
+      & \textup{$k > m$, esp. if  $k = \infty$}
+    \end{array}
+    \right.,
+  \]
+  For all bigger indices $m \geq n$ we have $x_m = k$, since $k \neq \infty$ and therefore its only preimage under $p^m_n$ is $k \in X_m$, thus
+  \[
+    x = (\infty, \dots, \infty, k, k, k, \dots),
+  \]
+  where $x_k$ is the first finite entry.
 This will be the image of $k \in \mathbb N$ under $\mathbb N \cup \{\infty\} \longrightarrow \mathbb N^*$.
 
 The only other $x \in \mathbb N^*$ will be the one that has no finite entry, so
-\[
-  x = (\infty, \infty, \dots),
-\]
-which will be the image of $\infty$, which completes the bijection.
+  \[
+    x = (\infty, \infty, \dots),
+  \]
+  which will be the image of $\infty$, which completes the bijection.
 
 Another thing to mention is that there are natural projections
-\[
-  p_n \colon \mathbb N^* \longrightarrow X_n, x \longmapsto x_n.
-\]
+  \[
+    p_n \colon \mathbb N^* \longrightarrow X_n, x \longmapsto x_n.
+  \]
 
 
-\paragraph{Topology on $\mathbb N^*$:}
+  \paragraph{Topology on $\mathbb N^*$:}
 
-The topology on $\mathbb N^*$, viewed as an inverse limit (in the category of topological spaces), is by definition given by the coarsest topology such that these projection maps are continuous.
-(It can also be infered by restriction of the product topology on $\prod_n X_n$, but strictly speaking, this toplogy arises from the same definition, where the product is viewed as an inverse limit.)
+  The topology on $\mathbb N^*$, viewed as an inverse limit (in the category of topological spaces), is by definition given by the coarsest topology such that these projection maps are continuous.
+  (It can also be infered by restriction of the product topology on $\prod_n X_n$, but strictly speaking, this toplogy arises from the same definition, where the product is viewed as an inverse limit.)
 
-Since the sets $X_n$ are discrete and finite spaces, every open subsets of $\mathbb N^*$ is then a union of the preimages of single points:
-\[
-    {p_n}^{-1}(k) = \{ x \mid x_n = k \} =
-  \left[
-  \begin{array}{lll}
-    \{ k \}
-    &   ,
-    &   k \leq \infty
-    \\  \{ k, k+1, \dots, \infty\}
-    &   ,
-    &   k = \infty
-  \end{array}
-  \right.
-\]
-Restricted to the subspace $\mathbb N$ this gives the discrete topology as expected, which means that all sets not containing $\infty$ are open, whereas sets containing $\infty$ are open if and only if they also contain every natural number bigger than some number $k \in \mathbb N$, i.e.\ their complement is closed and compact (finite) in $\mathbb N$.
+  Since the sets $X_n$ are discrete and finite spaces, every open subsets of $\mathbb N^*$ is then a union of the preimages of single points:
+  \[
+      {p_n}^{-1}(k) = \{ x \mid x_n = k \} =
+    \left[
+    \begin{array}{lll}
+      \{ k \}
+      & ,
+      & k \leq \infty
+      \\  \{ k, k+1, \dots, \infty\}
+      & ,
+      & k = \infty
+    \end{array}
+    \right.
+  \]
+  Restricted to the subspace $\mathbb N$ this gives the discrete topology as expected, which means that all sets not containing $\infty$ are open, whereas sets containing $\infty$ are open if and only if they also contain every natural number bigger than some number $k \in \mathbb N$, i.e.\ their complement is closed and compact (finite) in $\mathbb N$.
 This is exactly the same topology that we had put on the set $\mathbb N \cup \{\infty\}$ as the one-point compactification of $\mathbb N$, and the identification described above is therefore a homeomorphism.
 
-
+}
 
 
 
