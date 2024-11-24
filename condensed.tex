@@ -46,6 +46,7 @@ Current collaboratours with defined colors:
 {\sadrian Adrian A}, % Dark Cyan
 {\adrian Adrian W}, % Green
 {\lukas Lukas},
+{\luca Luca}, % Purple
 \dots
 
 Other relevant references are the lecture
@@ -65,7 +66,7 @@ The usual way of defining the one-point compactification of $\mathbb N$ (as a di
 
 To understand $\mathbb N^*$ as a pro-finite set with the corresponding topology (inverse limit-topology), we consider the projective system of finite sets
   \[
-    X_n \colonequals \{ k \in \mathbb N \mid k \leq n\} \cup \{ \infty \} = \{0, 1, \dots, n, \infty\}
+    X_n \coloneq \{ k \in \mathbb N \mid k \leq n\} \cup \{ \infty \} = \{0, 1, \dots, n, \infty\}
   \]
   with maps $p^{n}_m \colon X_{n} \longrightarrow X_{m}$ for $n \geq m$ given by
   \[
@@ -84,7 +85,7 @@ To understand $\mathbb N^*$ as a pro-finite set with the corresponding topology 
   These maps commute, in the sense that $p^m_l \circ p^n_m = p^n_l$, which is a necessity for defining the (projective/inverse) limit of this system
   \begin{equation}
     \label{def:compactified_IN}
-    \mathbb N^* \colonequals \varprojlim_{n} X_n.
+    \mathbb N^* \coloneq \varprojlim_{n} X_n.
   \end{equation}
   We take this limit in the category of topological spaces, where the sets $X_n$ are discrete spaces.
 
@@ -96,7 +97,7 @@ An element of $\mathbb N^*$ can be understood as an element of the product $x = 
     p^n_m(x_n) = x_m
   \]
   for all $m \leq n$.
-Since $(X_n)$ is a linear system, it suffices to check this for the maps $p^{n+1}_n$, because all the others are compositions of those maps between \grqq adjacent\grqq{} sets:
+Since $(X_n)$ is a linear system, it suffices to check this for the maps $p^{n+1}_n$, because all the others are compositions of those maps between ``adjacent'' sets:
   \[
     p^n_m = p^{m+1}_m \circ p^{m+2}_{m+1} \circ \cdots \circ p^n_{n-1}.
   \]
