@@ -8,6 +8,15 @@
 % COLOR CODE
 \usepackage{ourcolors}
 
+\def\C{\mathbf{C}}
+\def\Set{\mathbf{Set}}
+\def\Profin{\mathbf{ProFin}}
+\def\Lightprofin{\mathbf{Pro_{\mathbb{N}}Fin}}
+\def\Disccomp{\mathbf{DiscComp}}
+
+\def\id{\textup{id}}
+\def\op{\textup{op}}
+
 \begin{document}
 
 \title{Notes on Condensed Mathematics} 
@@ -46,6 +55,7 @@ Current collaboratours with defined colors:
 {\sadrian Adrian A}, % Dark Cyan
 {\adrian Adrian W}, % Green
 {\lukas Lukas},
+{\luca Luca}, % Purple
 \dots
 
 Other relevant references are the lecture
@@ -54,6 +64,8 @@ notes~\cite{analytic,condensed,complex}.
 %%%
 \subsection{Light profinite sets}
 %%%
+
+
 \textcolor{black}{}
 {\milan 
 There are two different notions of highly disconnected spaces.
@@ -88,6 +100,141 @@ Pick open neighbourhoods $x\in U$ and $y\in V$ with $U\cap V = \emptyset$ by the
     Since $X$ is totally disconnected, $U\cap V$ is disconnected and hence admits a clopen decomposition $\widetilde{U}\cup \widetilde{V}$ with $\widetilde{U} \cap \widetilde{V} = \emptyset$.
 \end{proof}
 }
+
+{\adrian
+\paragraph{One-point compactification of $\mathbb N$}
+
+The usual way of defining the one-point compactification of $\mathbb N$ (as a discrete space) to $\mathbb N^* = \mathbb N \cup \{\infty\}$ is by having the previously open sets of $\mathbb N$ (all of them) be open in $\mathbb N^*$, and additionally all those sets containing $\infty$, whose complement is closed and compact inside $\mathbb N$ (equivalently, finite).
+
+To understand $\mathbb N^*$ as a pro-finite set with the corresponding topology (inverse limit-topology), we consider the projective system of finite sets
+  \[
+    X_n \coloneq \{ k \in \mathbb N \mid k \leq n\} \cup \{ \infty \} = \{0, 1, \dots, n, \infty\}
+  \]
+  with maps $p^{n}_m \colon X_{n} \longrightarrow X_{m}$ for $n \geq m$ given by
+  \[
+    k \longmapsto
+    \left[
+    \begin{array}{lll}
+      k
+      & ,
+      & k \leq m
+      \\  \infty
+      & ,
+      & \textup{$k > m$, esp. if $k = \infty$}
+    \end{array}
+    \right.
+  \]
+  These maps commute, in the sense that $p^m_l \circ p^n_m = p^n_l$, which is a necessity for defining the (projective/inverse) limit of this system
+  \begin{equation}
+    \label{def:compactified_IN}
+    \mathbb N^* \coloneq \varprojlim_{n} X_n.
+  \end{equation}
+  We take this limit in the category of topological spaces, where the sets $X_n$ are discrete spaces.
+
+
+\paragraph{The underlying set of $\mathbb N^*$:}
+Let's first check that this gives the correct set $\mathbb N \cup \{\infty\}$, by constructing a bijection.
+An element of $\mathbb N^*$ can be understood as an element of the product $x = (x_n) \in \prod_n X_n$ that fulfills the compatibility conditions
+  \[
+    p^n_m(x_n) = x_m
+  \]
+  for all $m \leq n$.
+Since $(X_n)$ is a linear system, it suffices to check this for the maps $p^{n+1}_n$, because all the others are compositions of those maps between ``adjacent'' sets:
+  \[
+    p^n_m = p^{m+1}_m \circ p^{m+2}_{m+1} \circ \cdots \circ p^n_{n-1}.
+  \]
+  Let's say that we have $x_n = k \neq \infty$ for some $n$.
+Then on the one hand we can conclude for all smaller indices $m \leq n$ that
+  \[
+    x_m = p^n_m(x_n) = p^n_m(k) =
+    \left[
+    \begin{array}{lll}
+      k
+      & ,
+      & k \leq m
+      \\  \infty
+      & ,
+      & \textup{$k > m$, esp. if  $k = \infty$}
+    \end{array}
+    \right.,
+  \]
+  For all bigger indices $m \geq n$ we have $x_m = k$, since $k \neq \infty$ and therefore its only preimage under $p^m_n$ is $k \in X_m$, thus
+  \[
+    x = (\infty, \dots, \infty, k, k, k, \dots),
+  \]
+  where $x_k$ is the first finite entry.
+This will be the image of $k \in \mathbb N$ under $\mathbb N \cup \{\infty\} \longrightarrow \mathbb N^*$.
+
+The only other $x \in \mathbb N^*$ will be the one that has no finite entry, so
+  \[
+    x = (\infty, \infty, \dots),
+  \]
+  which will be the image of $\infty$, which completes the bijection.
+
+Another thing to mention is that there are natural projections
+  \[
+    p_n \colon \mathbb N^* \longrightarrow X_n, x \longmapsto x_n.
+  \]
+
+
+  \paragraph{Topology on $\mathbb N^*$:}
+
+  The topology on $\mathbb N^*$, viewed as an inverse limit (in the category of topological spaces), is by definition given by the coarsest topology such that these projection maps are continuous.
+  (It can also be infered by restriction of the product topology on $\prod_n X_n$, but strictly speaking, this toplogy arises from the same definition, where the product is viewed as an inverse limit.)
+
+  Since the sets $X_n$ are discrete and finite spaces, every open subsets of $\mathbb N^*$ is then a union of the preimages of single points:
+  \[
+      {p_n}^{-1}(k) = \{ x \mid x_n = k \} =
+    \left[
+    \begin{array}{lll}
+      \{ k \}
+      & ,
+      & k \leq \infty
+      \\  \{ k, k+1, \dots, \infty\}
+      & ,
+      & k = \infty
+    \end{array}
+    \right.
+  \]
+  Restricted to the subspace $\mathbb N$ this gives the discrete topology as expected, which means that all sets not containing $\infty$ are open, whereas sets containing $\infty$ are open if and only if they also contain every natural number bigger than some number $k \in \mathbb N$, i.e.\ their complement is closed and compact (finite) in $\mathbb N$.
+This is exactly the same topology that we had put on the set $\mathbb N \cup \{\infty\}$ as the one-point compactification of $\mathbb N$, and the identification described above is therefore a homeomorphism.
+
+}\label{subsec:light-profinite-sets}
+
+
+{\filip
+\begin{example} $\lim_n \Z/p^n \Z = \Z_p.$ 
+
+In order to talk about the (inverse) limit, we need to specify the maps $$p_{ij}: \Z/p^j \Z \to \Z p^i \Z.$$ They are given by $p_{ij}([q]_{p^j}) = [q]_{p^{i}}$ for $i \leq j$. The result of the limit is the set $\Z_p$ of $p$-adic integers. $\Z_p$  is the completion of $\Z$ with respect to the $p$-adic norm $\|n\|_p = \frac{1}{p^k}$, where $n=p^k q $ and $\mathrm{gcd}(p,q)=1$. 
+
+Given a sequence $a_n \in \{0, 1, ..., p\}$, let us show that $S_k= \sum_{i=0}^k a_i p^i$ is a Cauchy sequence in $\| \cdot \|_p$. Indeed, assume $m<n$ 
+$$
+\|S_n- S_m\|_p = \|\sum_{i=m+1}^n a_i p^i\|_p \leq \frac{1}{p^{m+1}}.
+$$
+So the limit of $S_n$ exists in $\Z_p$, and we can write $\sum_{n=0}^{+\infty} a_n p^n \in \Z_p$. One can actually see that 
+$$
+\Z_p= \left\{\sum_{n=0}^{+\infty} a_n p^n \mid a_n \in \{0, ..., p-1\}\right \}.
+$$
+Now, recall that in the category of topological spaces, the limit $\lim_{i \in I} X_i = X_{\infty}$ is given by
+$$
+X_{\infty} = \left\{ (x_i)_{i \in I} \in \prod_{i \in I} X_i \mid  p_{ij}(x_j) = x_i \right\}.
+$$
+Now, each element $q \in \Z / p^j\Z$ has the unique representative of the form $q= \sum_{k=0}^{j-1} a_k p^k$, and 
+$$
+p_{ij}\left(\sum_{k=0}^{j-1} a_k p^k\right) = \sum_{k=0}^{i-1}a_k p^k.
+$$
+Hence, for $q = (q_n)_{n \in \N} \in \lim_n \Z /p^n \Z$, and since $p_{ij}(q_j)= q_i$ we have
+$$
+q_n = \sum_{k=0}^{n-1} a_k p^k.
+$$
+Note that the coefficients $a_k$ do not depend on $n$. So, we have an obvious bijection between $\Z_p$ and $\lim_n \Z/p^n \Z$ given by
+$$
+\Z_p \ni \sum_{n=0}^{\infty} a_k p^k \mapsto \left(\sum_{k=0}^{n-1} a_k p^k \right)_n \in \lim_n \Z/p^n \Z.
+$$
+Now, we need to check that the topologies agree. The topology on the direct limit is the relative topology (as a subset) of the product topology. Since we equip $\Z/ p^k \Z$ with the discrete topology, the basis for the topology on $\lim_n \Z/p^n \Z$ is given by prescribing finitely many values. On the other hand, open balls in $\Z_p$ are precisely the sets where the first $k$ entries are equal to the entries of the center of the ball, and all other entries are arbitrary.
+\end{example}
+}
+
 {\lukas
 We first discuss classical Stone duality between totally disconnected compact Hausdorff spaces and boolean algebras.
 
@@ -114,6 +261,7 @@ We first discuss classical Stone duality between totally disconnected compact Ha
 \end{example}
 
 \begin{lemma}
+	\label{lem:stone-spaces}
   \leavevmode
   \begin{enumerate}
     \item
@@ -359,6 +507,193 @@ $S_n=\{*\}$. Then $S_{n+1}$ is finite and the extension follows
 from the special case. 
 \end{proof}
 
+{\luca
+	\paragraph{Grothendieck Topologies}
+	
+	Let $\C$ be a (small) category.
+	
+	\begin{definition}
+		A \emph{sieve} S on $U \in \C$ is a family of morphisms with codomain $U$, such that
+		\begin{equation*}
+			f \in S \quad \Longrightarrow \quad f \circ g \in S
+		\end{equation*}
+		for all $g$ composable with $f$.
+		We denote the set of all sieves on $U$ by $\Omega(U)$.
+	\end{definition}
+	
+	Equivalently a sieve on $U$ can be described as a subobject $S \subseteq h_U \coloneq \Hom_\C(\cdot,U)$ in the category of presheafs $\widehat\C = \{\text{functors : } \C^\op \rightarrow \Set\}$.
+	
+	For a sieve $S$ on $U$ and a morphism $f : V \rightarrow U$ the restriction along $f$
+	\begin{equation*}
+		f^*S \coloneq \{g \in h_V \; | \; f \circ g \in S\}
+	\end{equation*}
+	clearly is a sieve on $V$.
+	Using this one can check that $\Omega$ defines a presheaf by setting $\Omega(f) = f^*$.
+	
+	\begin{definition}
+		A \emph{Grothendieck topology} $J$ on $\C$ assigns to each object $U$ a set $J(U) \subset \Omega(U)$ of so called \emph{covering sieves}, such that
+		\begin{enumerate}
+			\item the maximal sieves $h_U$ is in $J(U)$;
+			\item (stability) if $S \in J(U)$, then $f^*S \in J(V)$ for all $f : V \rightarrow U$;
+			\item (transitivity) if $S \in J(U)$ and $R \in \Omega(U)$ such that $f^*R \in J(V)$ for all $f : V \rightarrow U$ in $S$, then $R \in J(U)$.
+		\end{enumerate}
+		The pair $(\C,J)$ is then called a \emph{site}.
+	\end{definition}
+	
+	Because of stability, $J$ is a subobject of $\Omega$ in $\widehat{\C}$.
+	
+	Here we want to define a Grothendieck topology generated by ``covering families'' that are no sieves in general. For this we assume $\C$ to have pullbacks.
+	
+	\begin{definition}
+		A \emph{basis} $K$ on $\C$ assigns to each object $U$ a set $K(U)$ of families of morphisms with codomain $U$, so called \emph{covers}, such that
+		\begin{enumerate}
+			\item every isomorphism $\{f : V \rightarrow U\}$ is in $K(U)$;
+			\item (stability) if $\{f_i : U_i \rightarrow U\} \in K(U)$, then for all $g : V \rightarrow U$ the family of pullbacks along $g$ $\{g^*f_i : U_i \times_U V \rightarrow V\}$
+			is in $K(V)$.
+			\item (transitivity) if $\{f_i : U_i \rightarrow U\} \in K(U)$ and for each $i$ one has a cover $\{f_{ij} : U_{ij} \rightarrow U_i\} \in K(U_i)$, then the ``refinement'' $\{f_i \circ f_{ij} : U_{ij} \rightarrow U\}$ is in $K(U)$.
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{prop}
+		A basis $K$ on $\C$ generates a Grothendieck topology $J$ defined by
+		\begin{equation*}
+			S \in J(U) \quad : \Longleftrightarrow \quad \exists R \in K(U) : R \subseteq S.
+		\end{equation*}
+	\end{prop}
+	
+	\begin{proof}
+		\begin{enumerate}
+			\item The maximal sieve $h_U$ is in $J(U)$, since it contains the isomorphism $\{\id_U\} \in K(U)$.
+			\item Let $S \in J(U)$ with $R \subseteq S$ for some $R \in K(U)$ and $g : V \rightarrow U$ a given morphism.
+			Denote by $T \in K(V)$ the pullback of $R$ along $g$ as described in the definition above,
+			i.e. for $p \in T$ there is $f \in R$ with a pullback diagram
+			$$
+			\xymatrix{
+				V \times_U W \ar[d]^-p \ar[r]^-q & W \ar[d]^f \\
+				V \ar[r]^g & U.
+			}
+			$$
+			Then, because $S$ is a sieve, $g \circ p = f \circ q \in S$.
+			Hence $T \subseteq g^*S$, which shows that $g^*S$ is in $J(U)$.
+			\item Let $S \in J(U)$ and $R \in \Omega(U)$ such that $f^*R \in J(V)$ for all $f : V \rightarrow U$ in $S$.
+			Then we find covers $T \in K(U)$ and $T_f \in K(V)$ for all $f : V \rightarrow U$ in $T$ such that $T \subseteq S$ and $T_f \subseteq f^*R$.
+			Now the refinement as described above is a cover contained in $R$.
+			Thus $R \in J(U)$.
+		\end{enumerate}
+	\end{proof}
+	
+	The category $\Profin$ has pullbacks, which can be seen using Lemma \ref{lem:stone-spaces} in the equivalent category $\Disccomp$.
+	The same holds for $\Lightprofin$.
+	
+	\begin{prop}
+		On $\Lightprofin$ finite families of jointly surjective maps ($\{f_i : U_i \rightarrow U\}_{i = 1,\dots,n}$  with $f = (f_i) : \coprod_{i=1}^n U_i \rightarrow U$ surjective) form a basis.
+	\end{prop}
+	
+	\begin{proof}
+		\begin{enumerate}
+			\item Isomorphisms are surjective.
+			\item In $\Lightprofin$ let $\{f_i : U_i \rightarrow U\}_{i = 1,\dots,n}$ be jointly surjective and $g : V \rightarrow U$ given.
+			Consider the pullbacks
+			$$
+			\xymatrix{
+				V \times_U U_i \ar[d]^-{p_i} \ar[r]^-{q_i} & U_i \ar[d]^{f_i} \\
+				V \ar[r]^g & U.
+			}
+			$$
+			For an arbitrary $v \in V$ there exist by assumption $1 \leq i \leq n$ and $u \in U_i$ such that $f_i(u) = g(v)$.
+			Then (by the universal property) $v$ has a preimage under $p_i$.
+			Hence $\{p_i : V \times_U U_i \rightarrow V\}_{i = 1,\dots,n}$ is again jointly surjective.
+			\item Transitivity is clear since compositions of surjective maps are surjective.
+		\end{enumerate}
+	\end{proof}
+	
+	\begin{remark}
+		Clearly this is the smallest basis containing the collection of all surjective maps and finite disjoint unions.
+		The latter only satisfies (1) and (2) of the basis properties.
+	\end{remark}
+}
+
+{\luca
+	
+	\paragraph{Sheafs}
+	
+	Let $(\C,J)$ be a site.
+	
+	\begin{definition}
+		Let $X : \C^\op \rightarrow \Set$ be a presheaf, $U \in \C$ and $S \in J(U)$ a covering sieve.
+		A \emph{matching family} for $S$ of elements of $X$ assigns to each $f : V \rightarrow U$ in $S$ a section $x_f \in X(V)$ in such a way that
+		\begin{equation*}
+			X(g)(x_f) = x_{f \circ g} \qquad \text{for all } g : W \rightarrow V
+		\end{equation*}
+		or equivalently: $S \rightarrow X, f \mapsto x_f$ is a natural transformation.
+		An \emph{amalgamation} of such a matching family is an element $x \in X(U)$ with
+		\begin{equation*}
+			X(f)(x) = x_f \qquad \text{for all } f \in S.
+		\end{equation*}
+		This corresponds to an extension of the natural transformation:
+		$$
+		\xymatrix{
+			S \ar@{^{(}->}[d] \ar[r] & X \\
+			h_U \ar@{-->}[ur] &.
+		}
+		$$
+		
+		Assume further $\C$ has a basis $K$ and let $R = \{f_i : U_i \rightarrow U\} \in K(U)$ be a cover.
+		A matching family for $R$ of elements of $X$ assigns to each $i$ a section $x_i \in X(U_i)$ in such a way that
+		\begin{equation*}
+			X(\pi_{ij}^1)(x_i) = X(\pi_{ij}^2)(x_j)
+		\end{equation*}
+		for every pullback square
+		$$
+		\xymatrix{
+			U_i \times_U U_j \ar[d]^-{\pi_{ij}^1} \ar[r]^-{\pi_{ij}^2} & U_j \ar[d]^{f_j} \\
+			U_i \ar[r]^{f_i} & U.
+		}
+		$$
+		An associated amalgamation is again an element $x \in X(U)$ with
+		\begin{equation*}
+			X(f_i)(x) = x_i \qquad \text{for all } i.
+		\end{equation*}
+	\end{definition}
+	
+	\begin{definition}
+		A presheaf $X : \C^\op \rightarrow \Set$ is a \emph{sheaf} (for J), if every matching family for any covering sieve $S$ of any object $U \in \C$ has a unique amalgamation.
+		Diagrammatically this means we have an equalizer diagram
+		\begin{equation*}
+			\xymatrix{
+				X(U) \ar[r]^-e & \prod\limits_{f \in S} X(\dom(f)) \ar@<0.5ex>[r]^-p \ar@<-0.5ex>[r]_-a & \prod\limits_{\substack{f \in S, \\ g \text{ composable}}} X(\dom(g)),
+			}
+		\end{equation*}
+		where the maps are given by
+		\begin{align*}
+			e(x) & \coloneq (X(f)(x))_f, \\
+			p((x_f)_f) & \coloneq (x_{f \circ g})_{f,g}, \\
+			a((x_f)_f) & \coloneq (X(g)(x_f))_{f,g}.
+		\end{align*}
+	\end{definition}
+	
+	\begin{prop}
+		Assume $J$ is generated by a basis $K$.
+		Then a presheaf $X : \C^\op \rightarrow \Set$ is a sheaf, iff every matching family for any cover $\{f_i : U_i \rightarrow U\}$ of any object $U \in \C$ has a unique amalgamation.
+		Diagrammatically this means we have an equalizer diagram
+		\begin{equation*}
+			\xymatrix{
+				X(U) \ar[r]^-e & \prod\limits_i X(U_i) \ar@<0.5ex>[r]^-{p_1} \ar@<-0.5ex>[r]_-{p_2} & \prod\limits_{i,j} X(U_i \times_U U_j),
+			}
+		\end{equation*}
+		where the maps are given by
+		\begin{align*}
+			e(x) & \coloneq (X(f_i)(x))_i, \\
+			p_1((x_i)_i) & \coloneq (X(\pi_{ij}^1)(x_i))_{i,j}, \\
+			p_2((x_i)_i) & \coloneq (X(\pi_{ij}^2)(x_j))_{i,j}.
+		\end{align*}
+	\end{prop}
+	
+	\begin{remark}
+		Instead of a basis it suffices to use a generator of the topology satisfying only the stability condition (2).
+	\end{remark}
+}
+
 %%%
 \subsection{Light condensed sets}
 %%%
@@ -386,6 +721,14 @@ $$
 $$
 \end{enumerate}
 \end{defi}
+
+{\luca
+
+\begin{proof}
+	These are just the sheaf conditions for a minimal collection of generating families.
+	(1) generalizes easily to arbitrary finite disjoint unions.
+\end{proof}
+}
 
 \begin{example}[Key example]
 Each topological space $A$ defines a light condensed set 
