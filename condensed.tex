@@ -834,6 +834,275 @@ $$
 $$
 has a left adjoint $X\mapsto \Z[X]$. 
   
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lecture 3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%
+\subsection{Light condensed sets}
+%%%
+
+Why allow the Cantor set $C$?
+In any topos there exist intrinsic notions of ``compact'' and
+``Hausdorff''. 
+
+\begin{definition}
+(1) An object $X$ is {\em quasicompact (qc)} if any cover $\amalg_iX_i\to X$
+  admits a finite subcover.
+  
+(2) An object $X$ is {\em quasiseparated (qs)} if for all quasicompact
+$Y,Z\to X$ the fiber product $Y\times_XZ$ is quasicompact. 
+\end{definition}
+
+\begin{remark}
+For $X\neq\varnothing$ in $\CondSet^\light$, 1) is equivalent to the
+existence of a surjection $C\doublearrow{}X$ from the Cantor set, and
+2) is equivalent to quasicompactness of $C\times_XC$ for all $f,g:C\to X$. 
+If in the definition we only allowed $\N\cup\{\infty\}$ as test
+objects, then quasicompact objects would all be countable.
+\end{remark}
+
+\begin{prop}
+$$
+  \{\text{qcqs light condensed sets}\} \cong \{\text{metrizable compact
+  Hausdorff spaces}\}
+$$
+$$
+  \{\text{qs light condensed sets}\} \cong {\rm Ind}_{\rm inj}\{\text{metrizable compact
+  Hausdorff spaces}\}
+$$
+\end{prop}
+
+Here for the first equivalence we need that the Grothendieck topology
+is finitary and we need to allow the Cantor set. Implicit in it is the
+existence of the surjection given by binary expansion
+$$
+  C=\{0,1\}^\N\to[0,1],\qquad (a_0,a_1,\dots)\mapsto 0.a_1a_2\cdots.
+$$
+In the second equivalence, the category ${\rm Ind}_{\rm inj}\{\text{metrizable compact
+  Hausdorff spaces}\}$ has as objects functors $\{\text{filtered posets}\}\to\{\text{metrizable compact
+  Hausdorff spaces}\}$ in which all maps are injections.
+  
+%%%
+\subsection{Light condensed abelian groups}
+%%%
+
+Recall that
+$$
+  \CondAb^\light = \text{abelian group objects in }\CondSet^\light =
+         {\rm Shv}(Pro_\N(Fin),Ab).
+$$
+By general theory of sheaves on topoi, $\CondAb^\light$
+\begin{itemize}
+\item is a Grothendieck abelian category (i.e., filtered colimits are exact);
+\item has a tensor product $M\otimes N=\text{sheafification of
+}S\mapsto M(S)\otimes N(S)$;
+\item has a unit $\ul{\Z}:S\mapsto \Cont(S,\Z) = \{\text{locally
+  constant maps }S\to\Z\}$.
+\end{itemize}
+Moreover, the functor
+$$
+   \CondAb^\light \to \CondSet^\light
+$$
+has a left adjoint functor
+$$
+   X\mapsto \Z[X].
+$$
+Here the {\em free condensed abelian group} $\Z[X]$ is the
+sheafification of $S\mapsto \Z[X(S)]$. It can be thought of $\Z[X(*)]$
+equipped with some ``topology''. 
+
+\begin{example}
+How to define a topology on
+$$
+  \Z[\R] = \{\sum_{x\in\R}n_x[x]\mid n_x\in\Z\text{ almost all }0\}\,?
+$$
+View it as the free condensed abelian group
+$$
+  \Z[\ul{\R}] = \colim_{I=[-c,c]\subset\R}\Z[I],\qquad
+  \Z[I]=\cup_{n\in\N}\Z[I]_{\leq n} 
+$$
+with the metrizable compact Haudorff spaces (Exercise!)
+$$
+  \Z[I]_{\leq n} := \{\sum_{x\in I}n_x[x]\mid \sum_x|n_x|\leq n\}.
+$$
+Note that $\Z[\R]$ is actually a condensed {\em ring}. 
+\end{example}
+
+{\bf Notation. }
+Here and in the sequel we identify a topological space $A$ with the
+associated light condensed set $\ul{A}$ (``Yoneda embedding'') and drop
+the underscore. 
+
+\begin{thm}
+In $\CondAb^\light$ the following hold:
+\begin{enumerate}
+\item Countable products are exact.
+\item Sequential limits of surjective maps are surjective.
+\item $\Z[\N\cup\{\infty\}]$ is internally projective.
+\end{enumerate}
+\end{thm}
+
+Here an object $P$ is called
+\begin{itemize}
+\item {\em projective} if $\Ext^i(P,-)=0$ for all $i>0$;
+\item {\em internally projective} if $\ul{\Ext}^i(P,-)=0$ for all $i>0$
+\end{itemize}
+where $\ul{\Ext}^i(M,N)$ is the sheafification of
+$S\mapsto\Ext^i(M\otimes\Z[S],N)$. 
+
+\begin{proof}
+\ul{Reduction of (1) to (2)}: 
+All properties are clear except for surjectivity. For this we need
+that for surjections $f_n:M_n\doublearrow{}N_n$ the product
+$$
+  \prod f_n:\prod M_n\to \prod N_n
+$$
+is also surjective. This follows by writing it as the limit of surjections
+$$
+  \lim_m\Bigl(\prod_{n\leq m}M_m\times\prod_{n>m}N_n\doublearrow{}\prod_nN_n\Bigr).
+$$
+(2) We need to prove surjectivity of
+$$
+  M_\infty := \lim\Bigl(\cdots
+  M_2\doublearrow{}M_1\doublearrow{}M_0\Bigr)\to M_0. 
+$$
+This means that for each $S\in Pro_\N(Fin)$ and $S\to M_0$ we need to find $S_\infty$
+such that 
+$$
+\xymatrix{
+  M_\infty \ar[r] & M_0 \\
+  S_\infty \ar[u] \ar@{->>}[r] & S \ar[u].
+}
+$$
+We inductively find $S_n\to M_n$ such that
+$$
+\xymatrix{
+  \cdots M_2 \ar@{->>}[r] & M_1 \ar@{->>}[r] & M_0 \\
+  \cdots S_2 \ar[u] \ar@{->>}[r] & S_1 \ar[u] \ar@{->>}[r] & S \ar[u]
+}
+$$
+and set $S_\infty := \lim\Bigl(\cdots S_2\doublearrow{}S_1\doublearrow{}S\Bigr)$.
+The map $S_\infty\to S$ is surjective because countable limits of
+surjections are surjective in $Pro_\N(Fin)$. 
+
+(3) Note that $\Z[\infty$ is a direct factor in $\Z[\N\cup\{\infty\}]$
+  and $M:=\Z[\N\cup\{\infty\}]/\Z[\infty]$ classifies null sequences.
+It suffices to show that $M$ is internally projective. For
+projectivity, for a surjection of light abeliian groups $\wt N\to N$
+and $f:M\to N$ we need to find a lift
+$$
+\xymatrix{
+  & \wt N \ar@{->>}[d] \\ M \ar[ur]^{?} \ar[r]^f & N
+}
+$$
+By surjectivity we find $S\in Pro_\N(Fin)$ such that
+$$
+\xymatrix{
+  S \ar@{->>}[d] \ar[rr]^g & & \wt N \ar@{->>}[d] \\ \N\cup\{\infty\} \ar[r] & M \ar[r]^f & N
+}
+$$
+where $\N\cup\{\infty\}\to N$ sends $\infty\mapsto 0$. 
+Picking in $S$ a preimage of each $n\in\N$ together with the full
+preimage of $\infty$ gives a closed subset $S'\subset S$ such that
+$S'\times_{\N\cup\{\infty\}}\N\stackrel{\sim}\to\N$. After replacing $S$
+by $S'$ we may assume w.l.o.g.~that $S\times_{\N\cup\{\infty\}}\N\stackrel{\sim}\to\N$.
+Let
+$$
+  S_\infty := S\times_{\N\cup\{\infty\}}\{\infty\}\subset_{closed}S.
+$$
+Since $S_\infty$ is light, it is injective in $Pro(Fin)$, so there
+exists a retraction $r:S\to S_\infty$. Denote by $i:S_\infty\into S$
+the inclusion. Since
+$$
+\xymatrix{
+  S_\infty \ar[d] \ar@{^{(}->}[r] & S \ar@{->>}[d] \\
+  \{\infty\} \ar@{^{(}->}[r] & \N\cup\{\infty\}
+}
+$$
+is a pushout in light condensed sets, we get a diagram
+$$
+\xymatrix{
+  S \ar[dr] \ar[rr]^{g-g\circ i\circ r} & & \wt N \\
+  & \N\cup\{\infty\} \ar[ur]^{\wt f} & \\
+  & \infty \ar[dr] \ar@{^{(}->}[u] & \\
+  S_\infty \ar@{^{(}->}[uuu] \ar[ur] \ar@{->>}[rr] & & 0 \ar@{^{(}->}[uuu]
+}
+$$
+It remains to show that the following diagram commutes:
+$$
+\xymatrix{
+  M = \Z[\N\cup\{\infty\}]/\Z[\infty] \ar[dr]_f
+  \ar[r]^{\ \ \ \ \ \ \ \ \ \ \ \ \wt f} & \wt N \ar[d] \\
+  & N
+}
+$$
+It suffices to check this for the composition with the map $\Z[S]\to
+M$, which follows from the fact that $g\circ i\circ r$ projects to $0$
+in $N$.
+This proves projectivity, and internal projectivity follows by
+essentially the same argument. 
+\end{proof}
+
+\begin{remark}
+For (2) it is crucial that countable limits of covers are covers in
+the Grothendieck topology. This forces one to use totally disconnected
+spaces as building blocks. For example, a sequence of covers of an
+open interval by more and more open intervals converges in teh limit
+to a totally disconnected space. 
+
+Part (3) is only true in the light setting. 
+\end{remark}
+
+\begin{remark}[Comparison to $\CondAb$]
+In $\CondAb$ all products are exact and we have projective generators
+$\Z[S]$, where $S=\beta I$ is the Stone-\v{C}ech compactification
+of a discrete set $I$. But none of these generators are internally
+projective because $\Z[\beta I\times\beta J]$ is never projective for
+infinite $I,J$. Similarly, $\Z[\N\cup\{\infty\}]$ is not projective in
+$\CondAb$ because $\Z[\beta\N]\doublearrow{}\Z[\N\cup\{\infty\}]$ does
+not split (Exercise). 
+\end{remark}
+
+\begin{remark}[Relation to Banach spaces]
+(surjectivity becomes injectivity).
+\begin{itemize}
+\item The only known injective Banach spaces are $\Cont(S,\R)$ for $S$
+  {\em extremely disconnected}, i.e., a retract of $\beta I$ above.  
+\item The space of null sequences $c_0(\N)$ is not injective, but it
+  is ``separably injective'', i.e., injective when tested on separable
+  Banach spaces. 
+\end{itemize}
+\end{remark}
+
+
+%%%
+\subsection{Cohomology}
+%%%
+
+The following is a special case of the \'etale cohomology on a topos. 
+
+\begin{definition}
+For a light condensed set $X$ and an abelian group $M$ we define
+$$
+  H^i(X,M) := \Ext^i_{\CondAb^\light}(\Z[X],\ul{M}).
+$$
+\end{definition}
+
+\begin{thm}
+If $X$ is a CW complex, then
+$$
+   H^i(\ul{X},M) \cong H^i_{\rm sing}(X,M).
+$$
+\end{thm}
+
+The proof is based on the Dold-Thom theorem, according to which
+$\Z[\ul{X}]$ is a model for the homology of $X$. 
+
+
 \printbibliography
 
 \end{document} 
